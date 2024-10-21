@@ -37,8 +37,7 @@ The validation example is a spherical pressure/temperature cloud.
 
 For the validation case, I have set up an Allrun commmad (use .Allrun) that will generate the mesh, setFields, decompose and run. The commands are 
 
-_blockMesh ; cp -R 0.orig 0 ; setFields ;  decomposePar
-_
+_blockMesh ; cp -R 0.orig 0 ; setFields ;  decomposePar_
 
 Here the blockMesh command looks up the blockMeshDict file (in systems) and creates a very basic cube (uniform) mesh. The initial conditions may overwrite the initial data, we copy the 0.orig to 0.
 The intialisation is performed with setFields, which look up the setFieldsDict where the initial values for temperature and pressure are set. To speed up 
