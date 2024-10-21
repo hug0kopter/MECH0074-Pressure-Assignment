@@ -24,7 +24,11 @@ There is quite a lot of information on youtube about running openfoam, but I wil
 
 # OpenFoam Philosophy
 
-All CFD consists of 3 parts - (i) 
+All CFD consists of 3 parts - (i) generating the mesh, (ii) running the code and (iii) diagnostics and interpretation.
+
+Mesh generation can occur in a number of ways. These two examples illustrate two approaches - (a) generating a structured mesh and (b) unstructured mesh with complex geometry.
+
+To generate
 
 
 # Running the circuit breaker example
