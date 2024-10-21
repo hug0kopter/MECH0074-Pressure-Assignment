@@ -16,10 +16,9 @@ For Windows, OpenFoam should be installed in an Ubuntu app. The instructions are
 
 _https://openfoam.org/download/windows/_
 
-This first requires installation of Windows Subsystem for Linux (WSL). 
+This first requires installation of Windows Subsystem for Linux (WSL).  Once Ubuntu is installed, openfoam is installed - in this case it is OpenFoamv12. When you use the subsystem, try to connect to the windows file system using _cd /mnt/c/Desktop_
 
-install brew (https://brew.sh/ - one line install with 3 commands listed at the end) and then use 
-
+Separate to all of this, you need to install Paraview - but install as an app or application rather than through the linux or terminal. https://www.paraview.org/
 
 # Running the circuit breaker example
 
