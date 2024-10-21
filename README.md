@@ -20,6 +20,13 @@ This first requires installation of Windows Subsystem for Linux (WSL).  Once Ubu
 
 Separate to all of this, you need to install Paraview - but install as an app or application rather than through the linux or terminal. https://www.paraview.org/
 
+There is quite a lot of information on youtube about running openfoam, but I will give you a basic introduction.
+
+# OpenFoam Philosophy
+
+
+
+
 # Running the circuit breaker example
 
 The validation example is a spherical pressure/temperature cloud.
