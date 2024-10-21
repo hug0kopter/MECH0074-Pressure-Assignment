@@ -1,0 +1,155 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     rhoCentralFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.1;
+
+deltaT          1E-7;
+
+writeControl    adjustable;
+
+writeInterval   0.000001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+graphFormat     raw;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+maxCo           0.2;
+
+maxDeltaT       1;
+
+
+// ************************************************************************* //
+
+
+functions{
+
+mass
+    {
+        type            volFieldValue;
+        libs            (fieldFunctionObjects);
+
+        writeControl    timeStep;
+        writeInterval   1;
+        writeFields     false;
+        log             true;
+
+        operation       volIntegrate;
+        // postOperation   mag;
+
+        fields
+        (
+            p
+        );
+    }
+
+
+  centerOfGravityAir
+    {
+        libs        ("libutilityFunctionObjects.so");
+
+        type coded;
+        // Name of on-the-fly generated functionObject
+        name timeInfo;
+ redirectType error;
+        writeControl  timeStep;
+        executeControl timeStep;
+        
+        codeOptions
+        #{
+            -I$(LIB_SRC)/finiteVolume/lnInclude \
+            -I$(LIB_SRC)/OpenFOAM/lnInclude
+        #};
+
+
+        codeInclude
+        #{
+            #include "volFieldsFwd.H"
+            #include "OFstream.H"
+        #};
+        
+        codeData
+        #{
+              autoPtr<OFstream> outputFilePtr;
+        #};
+            
+        codeRead
+        #{
+           
+             outputFilePtr.reset(new OFstream("centerOfGravityAir.dat"));
+           
+        #};
+        
+        codeExecute
+        #{
+        
+             const volScalarField& p1= mesh().lookupObject<volScalarField>("p");
+             const volScalarField& T1= mesh().lookupObject<volScalarField>("T");
+             
+             scalar cOG (0.0);
+             scalar maxp (0.0);
+             scalar maxT (0.0);
+             
+             forAll(p1,cellI)
+             {
+                 cOG += (p1[cellI]-1e5)*mesh().V()[cellI];
+ }
+             maxp=gMax(p1);
+             maxT=gMax(T1);
+
+             reduce(cOG, sumOp<scalar>());
+             
+            reduce(maxp, maxOp<scalar>());
+            reduce(maxT, maxOp<scalar>());
+
+             if (Pstream::myProcNo() == 0)
+             {
+                 outputFilePtr() << mesh().time().timeName() << " " << cOG << " " << maxp << "  " << maxT <<endl;
+             }
+             
+             Info << "cog = "  << mesh().time().timeName() << " " << cOG << " " << maxp << "  " << maxT << endl;
+             
+        #};
+        
+        codeWrite
+        #{
+
+        #};
+    }
+
+
+}
