@@ -24,7 +24,7 @@ There is quite a lot of information on youtube about running openfoam, but I wil
 
 # OpenFoam Philosophy
 
-
+All CFD consists of 3 parts - (i) 
 
 
 # Running the circuit breaker example
