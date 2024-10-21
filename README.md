@@ -9,8 +9,15 @@ there are small changes to some of the files. The software is open source and ca
 For MacOS, install brew (https://brew.sh/ - one line install with 3 commands listed at the end) and then use 
 
 _brew install --no-quarantine gerlero/openfoam/openfoam@2312_
+(taken from https://github.com/gerlero/openfoam-app). This installs OpenFoam2312.
 
-(taken from https://github.com/gerlero/openfoam-app).
+For Windows, OpenFoam should be installed in an Ubuntu app. The instructions are listed at
+
+_https://openfoam.org/download/windows/_
+
+This first requires installation of Windows Subsystem for Linux (WSL). 
+
+install brew (https://brew.sh/ - one line install with 3 commands listed at the end) and then use 
 
 
 # Running the circuit breaker example
