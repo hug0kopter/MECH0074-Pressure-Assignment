@@ -6,7 +6,7 @@ there are small changes to some of the files. The software is open source and ca
 .
 For MacOS, install brew (https://brew.sh/ - one line install with 3 commands listed at the end) and then use 
 
-_ _ brew install --no-quarantine gerlero/openfoam/openfoam@2312 _ _
+__ brew install --no-quarantine gerlero/openfoam/openfoam@2312 __
 
 (taken from https://github.com/gerlero/openfoam-app).
 
