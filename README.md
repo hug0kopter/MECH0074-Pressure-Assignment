@@ -13,7 +13,8 @@ _brew install --no-quarantine gerlero/openfoam/openfoam@2312_
 
 For Windows, OpenFoam should be installed in an Ubuntu app. The instructions are listed at
 
-_https://openfoam.org/download/windows/_
+_https://openfoam.org/download/windows/
+_
 
 This first requires installation of Windows Subsystem for Linux (WSL). 
 
