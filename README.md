@@ -22,6 +22,8 @@ Separate to all of this, you need to install Paraview - but install as an app or
 
 There is quite a lot of information on youtube about running openfoam, but I will give you a basic introduction.
 
+There is a slight difference between openFOAM2301 and OpenFOAMv12. The first is that the controlDict requires the _writeControl_ and _adjustableTime_ statements to be changed. In the sphereToCell _centre_ needs to be defined. Apparently rhoCentralFoam is not supported (though it exists in OpenFOAMv12) and replaced by _shockFluid_.
+
 # OpenFoam Philosophy
 
 All CFD consists of 3 parts - (i) generating the mesh, (ii) running the code and (iii) diagnostics and interpretation.
