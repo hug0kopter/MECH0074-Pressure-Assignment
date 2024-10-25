@@ -43,4 +43,7 @@ Here the blockMesh command looks up the blockMeshDict file (in systems) and crea
 The intialisation is performed with setFields, which look up the setFieldsDict where the initial values for temperature and pressure are set. To speed up 
 
 
+# Running the validation exercise
+
+I have put a processing file in the functions directory. This will automatically load in the data from pressure, temperature and velocity recorded along a path and collate the information.
 
