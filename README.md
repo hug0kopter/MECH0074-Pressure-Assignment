@@ -30,7 +30,7 @@ All CFD consists of 3 parts - (i) generating the mesh, (ii) running the code and
 
 Mesh generation can occur in a number of ways. These two examples illustrate two approaches - (a) generating a structured mesh and (b) unstructured mesh with complex geometry.
 
-To generate
+To generate the structured mesh for the validation case, use _blockMesh_. For the circuit breaker example, you need to first generate a 'blank' mesh using _blockMesh_ and then use _snappyHexMesh -overwrite_ which creates a mesh by identifying the edges of the stl CAD drawing that is applied for the circuit breaker. The stl file is on Moodle or zipped in github page. 
 
 
 # Running the circuit breaker example
@@ -39,7 +39,7 @@ The validation example is a spherical pressure/temperature cloud.
 
 For the validation case, I have set up an Allrun commmad (use .Allrun) that will generate the mesh, setFields, decompose and run. The commands are 
 
-_blockMesh ; cp -R 0.orig 0 ; setFields ;  decomposePar_
+_blockMesh ; snappyHexMesh -overwrite; cp -R 0.orig 0 ; setFields ;  decomposePar_
 
 Here the blockMesh command looks up the blockMeshDict file (in systems) and creates a very basic cube (uniform) mesh. The initial conditions may overwrite the initial data, we copy the 0.orig to 0.
 The intialisation is performed with setFields, which look up the setFieldsDict where the initial values for temperature and pressure are set. To speed up 
@@ -47,5 +47,5 @@ The intialisation is performed with setFields, which look up the setFieldsDict w
 
 # Running the validation exercise
 
-I have put a processing file in the functions directory. This will automatically load in the data from pressure, temperature and velocity recorded along a path and collate the information.
+I have put a processing file in the functions directory. This will automatically load in the data from pressure, temperature and velocity recorded along a path and collate the information. There is a set of scripts in the controlDict which creates a *.dat file in the main directory that lists out time, \int (p-p_0)dV, max(p) and max(T). The Matlab programme in the validation directory _functions_  can be used to collate the line date recorded in the _postProcessing_ directory.
 
